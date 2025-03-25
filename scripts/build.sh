@@ -19,15 +19,21 @@ fi
 BUILD_TYPE="Release"
 
 # Parse command line arguments
+BUILD_ONLY=false
+
 while [[ $# -gt 0 ]]; do
   case $1 in
     --debug|-d)
       BUILD_TYPE="Debug"
       shift
       ;;
+    --build-only|-b)
+      BUILD_ONLY=true
+      shift
+      ;;
     *)
       echo "Unknown option: $1"
-      echo "Usage: $0 [--debug|-d]"
+      echo "Usage: $0 [--debug|-d] [--build-only|-b]"
       exit 1
       ;;
   esac
@@ -49,6 +55,11 @@ cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE
 
 # Build the project
 cmake --build . --config $BUILD_TYPE
+
+if $BUILD_ONLY; then
+    echo "Build finished"
+    exit 0
+fi
 
 # Run the application
 if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
