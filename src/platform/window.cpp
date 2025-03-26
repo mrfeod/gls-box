@@ -15,18 +15,18 @@ Window::Window(int width, int height, const char* title)
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 
-    windowHandle = glfwCreateWindow(width, height, title, nullptr, nullptr);
-    if (windowHandle == nullptr) {
+    windowHandle_ = glfwCreateWindow(width, height, title, nullptr, nullptr);
+    if (windowHandle_ == nullptr) {
         glfwTerminate();
         std::cerr << "Failed to create window" << "\n";
     }
 
-    glfwMakeContextCurrent(windowHandle);
+    glfwMakeContextCurrent(windowHandle_);
 }
 
 Window::~Window()
 {
-    glfwDestroyWindow(windowHandle);
+    glfwDestroyWindow(windowHandle_);
     glfwTerminate();
 }
 
@@ -37,25 +37,25 @@ void Window::pollEvents()
 
 void Window::close()
 {
-    glfwSetWindowShouldClose(windowHandle, GLFW_TRUE);
+    glfwSetWindowShouldClose(windowHandle_, GLFW_TRUE);
 }
 
 bool Window::shouldClose() const
 {
-    return glfwWindowShouldClose(windowHandle) != 0;
+    return glfwWindowShouldClose(windowHandle_) != 0;
 }
 
 void Window::swapBuffers()
 {
-    glfwSwapBuffers(windowHandle);
+    glfwSwapBuffers(windowHandle_);
 }
 
 void Window::registerFramebufferSizeCallback(GLFWframebuffersizefun callback) const
 {
-    glfwSetFramebufferSizeCallback(windowHandle, callback);
+    glfwSetFramebufferSizeCallback(windowHandle_, callback);
 }
 
 void Window::getFramebufferSize(int* width, int* height) const
 {
-    glfwGetFramebufferSize(windowHandle, width, height);
+    glfwGetFramebufferSize(windowHandle_, width, height);
 }

@@ -18,5 +18,7 @@ void main()
     mat4 modelTransform = rotation * model;
 
     gl_Position = projection * view * modelTransform * vec4(aPos, 1.0);
+    gl_Position.x *= sin(u_Time);
+    gl_Position.y *= -sin(u_Time);
     vertexColor = aColor;
 }

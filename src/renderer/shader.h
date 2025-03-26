@@ -7,8 +7,12 @@
 
 class Shader
 {
+private:
+    GLuint programID_{};
+    GLuint vertexShaderID_{};
+    GLuint fragmentShaderID_{};
+
 public:
-    Shader() : programID(0), vertexShaderID(0), fragmentShaderID(0) {}
     ~Shader();
 
     void loadFromFile(const std::string& vertexPath, const std::string& fragmentPath);
@@ -19,10 +23,6 @@ public:
     void setUniform(const std::string& name, const glm::mat4& value) const;
 
 private:
-    GLuint programID;
-    GLuint vertexShaderID;
-    GLuint fragmentShaderID;
-
     GLuint compileShader(GLenum type, const std::string& source);
     void linkProgram();
 };

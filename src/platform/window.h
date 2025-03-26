@@ -4,6 +4,9 @@
 
 class Window
 {
+private:
+    GLFWwindow* windowHandle_{};
+
 public:
     Window(int width, int height, const char* title);
     ~Window();
@@ -20,7 +23,4 @@ public:
     void registerFramebufferSizeCallback(GLFWframebuffersizefun callback) const;
 
     void getFramebufferSize(int* width, int* height) const;
-
-private:
-    GLFWwindow* windowHandle;
 };
