@@ -10,6 +10,7 @@ class Triangle
 private:
     GLuint VAO_{};
     GLuint VBO_{};
+    GLuint colorVBO_{};
 
 public:
     Triangle();
